@@ -8,7 +8,10 @@
 
 (defn path-from-url
   [url]
-  (str "/" (join "/" (drop 3 (split url #"/")))))
+  (->> (split url #"/")
+      (drop 3)
+      (join "/")
+      (str "/")))
 
 (defn fetch []
   (let [url (get-random-article)]
