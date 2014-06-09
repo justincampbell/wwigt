@@ -3,7 +3,6 @@
             [wwigt.core :refer :all]
             :reload-all))
 
-(def path "/wiki/Sharks")
 (def url "http://en.wikipedia.org/wiki/Sharks")
 
 (deftest fetch-test
@@ -17,7 +16,7 @@
 
 (deftest path-from-url-test
   (testing "returns the path from a url"
-   (is (= path (path-from-url url)))))
+   (is (= "/wiki/Sharks" (path-from-url url)))))
 
 (deftest get-item-title-test
   (testing "fetches and parses HTML from a url and extracts the title"
