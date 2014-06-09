@@ -18,3 +18,7 @@
 (deftest path-from-url-test
   (testing "returns the path from a url"
    (is (= path (path-from-url url)))))
+
+(deftest get-item-title-test
+  (testing "fetches and parses HTML from a url and extracts the title"
+    (is (= "Sharks"  (get-item-title url)))))
