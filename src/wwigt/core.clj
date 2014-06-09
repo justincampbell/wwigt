@@ -1,5 +1,5 @@
 (ns wwigt.core
-  (:use [clojure.string :only [join split]]))
+  (:require [clojure.string :as string]))
 
 (defn get-random-article
   "Gets a random article from Wikipedia"
@@ -8,9 +8,9 @@
 
 (defn path-from-url
   [url]
-  (->> (split url #"/")
+  (->> (string/split url #"/")
        (drop 3)
-       (join "/")
+       (string/join "/")
        (str "/")))
 
 (defn fetch []
