@@ -1,6 +1,13 @@
 (ns wwigt.core
   (:require [clojure.string :as string]))
 
+(defn path-from-url
+  [url]
+  (->> (string/split url #"/")
+       (drop 3)
+       (string/join "/")
+       (str "/")))
+
 (defn get-item-title
   "Gets the title from a url"
   [url]
@@ -11,13 +18,6 @@
   "Gets a random article from Wikipedia"
   []
   "http://en.wikipedia.org/wiki/Sharks")
-
-(defn path-from-url
-  [url]
-  (->> (string/split url #"/")
-       (drop 3)
-       (string/join "/")
-       (str "/")))
 
 (defn fetch []
   (let [url (get-random-article)]
