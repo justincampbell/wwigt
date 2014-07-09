@@ -1,5 +1,6 @@
 (ns wwigt.core
-  (:require [clojure.string :as string]))
+  (:require [clojure.string :as string]
+            [clj-http.client :as client]))
 
 (defn path-from-url
   [url]
@@ -8,7 +9,7 @@
        (string/join "/")
        (str "/")))
 
-(defn get-item-title
+(defn title-from-url
   "Gets the title from a url"
   [url]
   (let [path (path-from-url url)]
@@ -17,9 +18,14 @@
 (defn get-random-article
   "Gets a random article from Wikipedia"
   []
-  "http://en.wikipedia.org/wiki/Sharks")
+  (let [response (client/get "http://en.wikipedia.org/wiki/Special:Random"
+                             {:follow-redirects false})
+        headers (:headers response)
+        location (get headers "Location")]
+    location))
 
 (defn fetch []
   (let [url (get-random-article)]
     {:url url
-     :path (path-from-url url)}))
+     :path (path-from-url url)
+     :title (title-from-url url)}))
