@@ -24,8 +24,17 @@
         location (get headers "Location")]
     location))
 
+(defn url-from-path
+  [path]
+  (string/join "http://en.wikipedia.org" path))
+
+(defn result-from-path
+  [path]
+  (let [url (url-from-path path)]
+    {:url url
+     :path path
+     :title (title-from-url url)}))
+
 (defn fetch []
   (let [url (get-random-article)]
-    {:url url
-     :path (path-from-url url)
-     :title (title-from-url url)}))
+    (result-from-path (path-from-url url))))

@@ -4,12 +4,20 @@
             :reload))
 
 (def url "http://en.wikipedia.org/wiki/Sharks")
+(def path "/wiki/Sharks")
 
 (deftest fetch-test
   (testing "returns a map with the required attributes"
     (is (string? (:path (fetch))))
     (is (string? (:url (fetch))))
     (is (string? (:title (fetch))))))
+
+(deftest result-from-path-test
+  (testing "returns a map with the required attributes"
+    (let [result (result-from-path path)]
+      (is (string? (:path result)))
+      (is (string? (:url result)))
+      (is (string? (:title result))))))
 
 (deftest get-random-article-test
   (testing "returns a url from provider"
