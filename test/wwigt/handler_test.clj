@@ -14,7 +14,7 @@
     (let [response (app (request :get "/wiki/Sharks"))
           body (:body response)]
       (is (= (:status response) 200))
-      (is (re-find #"Maybe you wanted to" body))
+      (is (re-find #"Maybe you were going to learn about" body))
       (is (re-find #"Sharks" body))))
 
   (testing "not-found route"

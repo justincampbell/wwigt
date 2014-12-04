@@ -8,5 +8,5 @@
     [:head
      [:title title]]
     [:body
-     [:h1 "Maybe you wanted to learn about "
+     [:h1 "Maybe you were going to learn about "
       (link-to url title)]]))
