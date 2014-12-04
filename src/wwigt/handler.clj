@@ -14,11 +14,10 @@
        []
        (redirect (:path (fetch))))
 
-  (GET "/wiki/Sharks" request
+  (GET "/wiki/:title" request
        (let [path (:uri request)
              result (result-from-path path)]
         (view/show result)))
-
 
   (route/resources "/")
   (route/not-found "Not Found"))
